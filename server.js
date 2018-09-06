@@ -2,11 +2,13 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+let port = process.env.NODE_ENV || 3000;
 
 //Arbitrary ID manager since we don't use a database
 var index = 5;
@@ -89,7 +91,7 @@ app.put('/ideas/:id', function (req, res) {
     }
 
     res.end(JSON.stringify(idea));
-})
+});
 
 app.delete('/ideas/:id', function (req, res) {
     for (var i = 0; i < ideas.length; i++) {
@@ -101,7 +103,6 @@ app.delete('/ideas/:id', function (req, res) {
 });
 
 
-var server = app.listen(9000, function () {
-    var host = server.address().address
-    var port = server.address().port
-})
+app.listen(port, function () {
+
+});
