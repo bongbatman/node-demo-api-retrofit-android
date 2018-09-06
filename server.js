@@ -43,17 +43,22 @@ var ideas = [{
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan quis justo quis hendrerit. Curabitur a ante neque. Fusce nec mauris sodales, auctor sem at, luctus eros. Praesent aliquam nibh neque. Duis ut suscipit justo, id consectetur orci. Curabitur ultricies nunc eu enim dignissim, sed laoreet odio blandit.",
     "status" : "Exploratory",
     "owner" : "Jake"
-}]
+}];
 
 var message = "Thanks for visiting the app!  Our next hackathon is scheduled for the end of Q3.  We hope to see you there, be sure to add your ideas to the app!";
 
+
+app.get('/' , (req,res) => {
+    res.send("App Runs fine");
+});
+
 app.get('/messages', function (req, res) {
     res.end(JSON.stringify(message));
-})
+});
 
 app.get('/ideas', function (req, res) {
     res.end(JSON.stringify(ideas));
-})
+});
 
 app.get('/ideas/:id', function (req, res) {
     for (var i = 0; i < ideas.length; i++) {
@@ -61,7 +66,7 @@ app.get('/ideas/:id', function (req, res) {
             res.end(JSON.stringify(ideas[i]));
         }
     }
-})
+});
 
 app.post('/ideas', function (req, res) {
     var newIdea = {
@@ -70,13 +75,13 @@ app.post('/ideas', function (req, res) {
         "owner" : req.body.owner,
         "status": req.body.status,
         "id": index + 1
-    }
+    };
 
     index++;
 
     ideas.push(newIdea);
     res.status(201).end(JSON.stringify(newIdea));
-})
+});
 
 app.put('/ideas/:id', function (req, res) {
     var idea;
