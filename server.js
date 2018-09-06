@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// let port = process.env.NODE_ENV || 3000;
+let port = process.env.PORT || 3000;
 
 //Arbitrary ID manager since we don't use a database
 var index = 5;
@@ -108,6 +108,6 @@ app.delete('/ideas/:id', function (req, res) {
 });
 
 
-app.listen(process.env.NODE_ENV, function () {
+app.listen(port, function () {
 
 });
